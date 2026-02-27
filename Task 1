@@ -1,0 +1,99 @@
+#include <iostream>
+using namespace std
+
+class Material {
+protected:
+    string title
+    string author
+    int id
+public:
+    void setData(string t, string a, int i) {
+        title = t
+        author = a
+        id = i
+    }
+    virtual void display() {
+        cout << "ID: " << id << endl
+        cout << "Title: " << title << endl
+        cout << "Author: " << author << endl
+    }
+}
+
+class Book : public Material {
+    int pages
+    string genre
+public:
+    void setBookData(string t, string a, int i, int p, string g) {
+        setData(t, a, i)
+        pages = p
+        genre = g
+    }
+    void display() {
+        Material::display()
+        cout << "Pages: " << pages << endl
+        cout << "Genre: " << genre << endl
+        cout << "--------------------------" << endl
+    }
+}
+
+class Magazine : public Material {
+    int issueNumber
+    string month
+public:
+    void setMagazineData(string t, string a, int i, int issue, string m) {
+        setData(t, a, i)
+        issueNumber = issue
+        month = m
+    }
+    void display() {
+        Material::display()
+        cout << "Issue Number: " << issueNumber << endl
+        cout << "Month: " << month << endl
+        cout << "--------------------------" << endl
+    }
+}
+
+class AudioBook : public Material {
+    double duration
+    string narrator
+public:
+    void setAudioData(string t, string a, int i, double d, string n) {
+        setData(t, a, i)
+        duration = d
+        narrator = n
+    }
+    void display() {
+        Material::display()
+        cout << "Duration: " << duration << " hours" << endl
+        cout << "Narrator: " << narrator << endl
+        cout << "--------------------------" << endl
+    }
+}
+
+int main() {
+    Book b1, b2
+    b1.setBookData("Math Magic", "Sadia Ali", 101, 200, "Education")
+    b2.setBookData("Story Time", "Raj Kumar", 102, 150, "Fiction")
+
+    Magazine m1, m2
+    m1.setMagazineData("Tech Monthly", "Ali Khan", 201, 5, "January")
+    m2.setMagazineData("Health Today", "Sara Ahmed", 202, 8, "March")
+
+    AudioBook a1, a2
+    a1.setAudioData("Learn C++", "Sadia Ali", 301, 3.5, "Ali Raza")
+    a2.setAudioData("Fairy Tales", "Raj Kumar", 302, 2.0, "Maya Khan")
+
+    cout << "Books: " << endl
+    b1.display()
+    b2.display()
+
+    cout << "Magazines: " << endl
+    m1.display()
+    m2.display()
+
+    cout << "Audiobooks: " << endl
+    a1.display()
+    a2.display()
+
+    return 0
+}
